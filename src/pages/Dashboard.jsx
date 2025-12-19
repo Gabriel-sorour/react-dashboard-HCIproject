@@ -1,7 +1,33 @@
+import { useState, useEffect } from 'react';
 import ProjectCard from '../components/ProjectCard';
 import { Link } from 'react-router-dom';
 
 function Dashboard() {
+  const [projects, setProjects] = useState(() => {
+    return JSON.parse(localStorage.getItem('local_projects') || '[]');
+  });
+
+  useEffect(() => {
+    if (projects.length === 0) {
+      const apiUrl = 'https://6943e6d87dd335f4c35e8b56.mockapi.io/api/v1/projects';
+
+      fetch(apiUrl)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          setProjects(data);
+          localStorage.setItem('local_projects', JSON.stringify(data));
+        })
+        .catch((error) => {
+          console.error('Error fetching projects:', error);
+        });
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <div className="content-area">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
@@ -12,16 +38,15 @@ function Dashboard() {
       </div>
 
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-        <ProjectCard 
-          title="Portfolio Website" 
-          description="A personal website to showcase skills." 
-          tasksCount={3} 
-        />
-        <ProjectCard 
-          title="E-Commerce App" 
-          description="Online store with payment gateway." 
-          tasksCount={5} 
-        />
+        {projects.map((project) => (
+          <ProjectCard 
+            key={project.id}
+            id={project.id}
+            title={project.title} 
+            description={project.description} 
+            tasksCount={project.tasksCount} 
+          />
+        ))}
       </div>
     </div>
   );
