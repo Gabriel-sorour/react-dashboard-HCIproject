@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
-function Navbar() {
+function Navbar({ isDarkMode, setIsDarkMode }) {
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(prev => !prev);
+  };
+
   return (
     <nav className="navbar">
 
@@ -18,7 +23,12 @@ function Navbar() {
       </ul>
 
       <div className="navbar-actions">
-        <button className="dark-mode-button"> Dark Mode</button>
+        <button
+          className="dark-mode-button"
+          onClick={toggleDarkMode}
+        >
+          {isDarkMode ? 'Light Mode ' : 'Dark Mode'}
+        </button>
       </div>
     </nav>
   );

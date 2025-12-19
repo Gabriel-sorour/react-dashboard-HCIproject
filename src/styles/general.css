@@ -6,6 +6,9 @@ body {
   margin-bottom: 0px;
   margin-left: 0px;
   margin-right: 0px;
+  display: flex;
+  justify-content: center;
+  padding-top: 70px;
 }
 
 .content-area {
@@ -87,4 +90,15 @@ body {
 .delete-btn:hover {
   color: #cc0000;
   transform: scale(1.2);
+}
+
+
+body.dark-mode {
+  background-color:#191725;
+}
+body.dark-mode h1{
+  color: white;
+}
+body.dark-mode h2{
+  color: white;
 }

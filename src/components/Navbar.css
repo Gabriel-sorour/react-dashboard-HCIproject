@@ -8,6 +8,10 @@
   padding-left: 50px;
   padding-right: 50px;
   min-width: 600px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
 }
 
 .navbar-links {
