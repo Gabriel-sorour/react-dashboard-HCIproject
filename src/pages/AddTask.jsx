@@ -1,17 +1,24 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function AddTask() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const preSelectedId = location.state?.preSelectedId || '';
+
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
-  const [projectId, setProjectId] = useState('');
+  
+  const [projectId, setProjectId] = useState(preSelectedId);
+  
   const [status, setStatus] = useState('To Do');
-
+  
   const [projects] = useState(() => {
     return JSON.parse(localStorage.getItem('local_projects') || '[]');
   });
 
-  const navigate = useNavigate();
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();

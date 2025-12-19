@@ -43,7 +43,7 @@ function ProjectDetails() {
     <div className="content-area">
       <div className="project-header">
         <h2>Project: {projectName}</h2>
-        <Link to="/add-task">
+        <Link to="/add-task" state={{ preSelectedId: id }}>
           <button className="main-button">+ Add New Task</button>
         </Link>
       </div>
