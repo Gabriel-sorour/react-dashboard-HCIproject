@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import './ProjectCard.css';
 
-function ProjectCard({ id, title, description, tasksCount }) {
+function ProjectCard({ id, title, description, tasksCount, DeleteFn }) {
   const navigate = useNavigate();
   const handleViewTasks = () => {
     navigate(`/project/${id}`); 
@@ -9,6 +9,14 @@ function ProjectCard({ id, title, description, tasksCount }) {
 
   return (
     <div className="project-card">
+
+      <button
+        className="delete-btn"
+        onClick={() => DeleteFn(id)}
+      >
+        x
+      </button>
+
       <h3 className="project-title">{title}</h3>
       <p className="project-description">{description}</p>
       

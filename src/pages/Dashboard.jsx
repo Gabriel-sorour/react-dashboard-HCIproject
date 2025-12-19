@@ -28,6 +28,19 @@ function Dashboard() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const handleDeleteProject = (projectId) => {
+    if (window.confirm("Are you sure you want to delete this project?")) {
+      // delete the project itself and update
+      const updatedProjects = projects.filter(p => p.id !== projectId);
+      setProjects(updatedProjects);
+      localStorage.setItem('local_projects', JSON.stringify(updatedProjects));
+      // Delete the tasks related to that project
+      const allTasks = JSON.parse(localStorage.getItem('local_tasks') || '[]');
+      const remainingTasks = allTasks.filter(t => t.projectId !== projectId);
+      localStorage.setItem('local_tasks', JSON.stringify(remainingTasks));
+    }
+  };
+
   return (
     <div className="content-area">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
@@ -39,12 +52,13 @@ function Dashboard() {
 
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {projects.map((project) => (
-          <ProjectCard 
+          <ProjectCard
             key={project.id}
             id={project.id}
-            title={project.title} 
-            description={project.description} 
-            tasksCount={project.tasksCount} 
+            title={project.title}
+            description={project.description}
+            tasksCount={project.tasksCount}
+            DeleteFn={handleDeleteProject}
           />
         ))}
       </div>
