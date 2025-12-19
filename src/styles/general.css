@@ -1,0 +1,33 @@
+body {
+  color: #333333;
+  font-family: Arial, sans-serif;
+  
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.content-area {
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.main-button {
+  background-color: #E97F4A;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  border-top-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 5px;
+}

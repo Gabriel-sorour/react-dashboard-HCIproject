@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard';
 import ProjectDetails from './pages/ProjectDetails.jsx';
 import AddTask from './pages/AddTask';
 import AddProject from './pages/AddProject';
+import './styles/general.css'
 
 function App() {
 
