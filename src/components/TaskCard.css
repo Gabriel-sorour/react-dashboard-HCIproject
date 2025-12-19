@@ -48,3 +48,43 @@
   padding-right: 10px;
   cursor: pointer;
 }
+
+.task-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.move-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.arrow-btn {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding:0px 10px 5px 10px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  color: #434E78;
+  transition: background-color 0.2s;
+}
+
+.arrow-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.delete-task-btn {
+  background: none;
+  border: none;
+  color: #ff4d4d;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.delete-task-btn:hover {
+  text-decoration: underline;
+}

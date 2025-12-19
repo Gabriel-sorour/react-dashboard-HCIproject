@@ -26,6 +26,26 @@ function ProjectDetails() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+
+  const moveTask = (taskId, direction) => {
+    const statusOrder = ['To Do', 'In Progress', 'Done'];
+    
+    const updatedTasks = tasks.map(task => {
+      if (task.id === taskId) {
+        const currentIdx = statusOrder.indexOf(task.status);
+        const nextIdx = direction === 'forward' ? currentIdx + 1 : currentIdx - 1;
+
+        if (nextIdx >= 0 && nextIdx < statusOrder.length) {
+          return { ...task, status: statusOrder[nextIdx] };
+        }
+      }
+      return task;
+    });
+
+    setTasks(updatedTasks);
+    localStorage.setItem('local_tasks', JSON.stringify(updatedTasks));
+  };
+
   const deleteTask = (taskId) => {
     const updatedTasks = tasks.filter(task => task.id !== taskId);
     setTasks(updatedTasks);
@@ -58,7 +78,9 @@ function ProjectDetails() {
                 title={task.title} 
                 description={task.description} 
                 status={task.status} 
-                onDelete={() => deleteTask(task.id)} 
+                onDelete={() => deleteTask(task.id)}
+                onMoveForward={() => moveTask(task.id, 'forward')}
+                onMoveBackward={() => moveTask(task.id, 'backward')}
               />
             ))}
           </div>
